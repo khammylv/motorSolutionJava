@@ -21,7 +21,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="deleteUserForm" action="DeleteUser" method="post">
+                        <form id="deleteUserForm" action="UserServlet" method="post">
                             <p>¿Estás seguro de que deseas eliminar este usuario?</p>
 
                             <!-- Campo oculto para enviar el ID del usuario -->
@@ -32,6 +32,7 @@
                                 <label>ID del Usuario: </label>
                                 <span id="idUserCCView"></span>
                             </div>
+                            <input type="hidden" name="action" value="delete">
                         </form>
                     </div>
                     <div class="modal-footer">

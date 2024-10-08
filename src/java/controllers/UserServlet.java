@@ -35,28 +35,38 @@ public class UserServlet extends HttpServlet {
             String email = request.getParameter("email");
             String birth = request.getParameter("birth");
             String idUserCC = request.getParameter("idUserCC");
-
-            int resp;
-
+            int resp = 0;
             User userObj = new User(Integer.parseInt(idUserCC), name, email, birth);
             UserDAO userDao = new UserDAO();
-            resp = "create".equals(action) ? userDao.insertUser(userObj) : userDao.updateUser(userObj);
+
+            switch (action) {
+                case "create":
+                    resp = userDao.insertUser(userObj);
+                    break;
+
+                case "update":
+                    resp = userDao.updateUser(userObj);
+                    break;
+
+                case "delete":
+
+                    resp = userDao.deleteUser(userObj.getIdUserCC());
+                    break;
+
+                default:
+                    response.sendRedirect("UserServlet?error=1");
+                    return;
+            }
 
             if (resp != 0) {
-
                 response.sendRedirect("UserServlet?success=1");
-                //response.sendRedirect("index.jsp");
-
             } else {
-
                 response.sendRedirect("UserServlet?error=1");
-                //response.sendRedirect("index.jsp");
-                //request.getRequestDispatcher("/index.jsp").forward(request, response); // Mantener en la misma página
-
             }
+
         } catch (Exception e) {
             System.out.println("Error en metodo post edit: " + e.getMessage());
-            response.sendRedirect("UserListServlet?error=1");
+            response.sendRedirect("UserServlet?error=1");
         }
     }
 
@@ -64,14 +74,9 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             UserDAO userDao = new UserDAO();
-            List<User> users = userDao.getAllUsers(); // Obtener la lista de usuarios
-
-            // Establecer la lista de usuarios en el request
+            List<User> users = userDao.getAllUsers();
             request.setAttribute("userList", users);
-
-            // Redirigir a la página JSP que mostrará la lista
             request.getRequestDispatcher("index.jsp").forward(request, response);
-            //request.getRequestDispatcher("views/userList.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println("Error al desconectar" + e.getMessage());
 
