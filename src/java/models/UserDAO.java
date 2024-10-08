@@ -21,12 +21,13 @@ public class UserDAO extends Conexion {
         int response = 0;
         try {
             this.connect();
-            String sql = "INSERT INTO tbl_user(idUserCC, name, email, birth) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO tbl_user(idUserCC, name, email, birth, rol) VALUES (?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, user.getIdUserCC());
             pre.setString(2, user.getName());
             pre.setString(3, user.getEmail());
             pre.setString(4, user.getBirth());
+            pre.setString(5, user.getRol());
             response = pre.executeUpdate();
 
         } catch (SQLException e) {
@@ -50,7 +51,8 @@ public class UserDAO extends Conexion {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String birth = rs.getString("birth");
-                User user = new User(idUserCC, name, email, birth);
+                String rol = rs.getString("rol");
+                User user = new User(idUserCC, name, email, birth, rol);
                 userList.add(user);
             }
         } catch (SQLException e) {
@@ -65,13 +67,14 @@ public class UserDAO extends Conexion {
         int response = 0;
         try {
             this.connect();
-            String sql = "UPDATE tbl_user SET name=?, email=?, birth=? WHERE idUserCC=?";
+            String sql = "UPDATE tbl_user SET name=?, email=?, birth=?, rol=? WHERE idUserCC=?";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setString(1, user.getName());
             pre.setString(2, user.getEmail());
             pre.setString(3, user.getBirth());
-            pre.setInt(4, user.getIdUserCC());
-
+            pre.setString(4, user.getRol());
+            pre.setInt(5, user.getIdUserCC());
+            
             response = pre.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al actualizar usuario: " + e.getMessage());
@@ -85,7 +88,7 @@ public class UserDAO extends Conexion {
         int response = 0;
         try {
             this.connect();
-            
+
             String sql = "DELETE FROM tbl_user WHERE idUserCC=?";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, id);
@@ -97,4 +100,5 @@ public class UserDAO extends Conexion {
         }
         return response;
     }
+
 }

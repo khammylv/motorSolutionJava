@@ -14,15 +14,20 @@ public class User {
     private String name;
     private String email;
     private String birth;
+    private String rol;
+
+
 
     public User() {
     }
 
-    public User(int idUserCC, String name, String email, String birth) {
+
+    public User(int idUserCC, String name, String email, String birth, String rol) {
         this.idUserCC = idUserCC;
         this.name = name;
         this.email = email;
         this.birth = birth;
+        this.rol = rol;
     }
 
     public int getIdUserCC() {
@@ -57,6 +62,12 @@ public class User {
         this.birth = birth;
     }
 
+        public String getRol() {
+        return rol;
+    }
 
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
 }

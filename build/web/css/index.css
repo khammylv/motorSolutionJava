@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 :root {
-    --colorTextos: #49454567;
+    --colorTextos: #343a40;
     --azulOscuro : #03045e;
     --azulMedio: #023e8a;
 
@@ -37,7 +37,7 @@ form .grupo{
 
 input{
     background: none;
-    color: #c6c6c6;
+    color: #5fa8d3;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -50,7 +50,7 @@ input{
 
 input:focus{ 
     outline: none;
-    color: #5e5d5d;
+    color: #343a40;
 }
 
 label{
@@ -110,10 +110,40 @@ input:focus~.barra::before{
     cursor: pointer;
 }
 
-.warnings{
-    width: 200px;
-    text-align: center;
-    margin: auto;
-    color: var(--azulOscuro);
-    padding-top: 20px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #e53935;
 }

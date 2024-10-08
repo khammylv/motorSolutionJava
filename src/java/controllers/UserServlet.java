@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 
 import models.User;
 import models.UserDAO;
@@ -28,16 +29,18 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
             String action = request.getParameter("action");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String birth = request.getParameter("birth");
             String idUserCC = request.getParameter("idUserCC");
+            String rol = request.getParameter("role");
             int resp = 0;
-            User userObj = new User(Integer.parseInt(idUserCC), name, email, birth);
+            User userObj = new User(Integer.parseInt(idUserCC), name, email, birth, rol);
             UserDAO userDao = new UserDAO();
+            /*System.out.println("rol:  " + userObj.getRol());
+            response.sendRedirect("?success=1");*/
 
             switch (action) {
                 case "create":
@@ -54,19 +57,19 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 default:
-                    response.sendRedirect("UserServlet?error=1");
+                    response.sendRedirect("?error=1");
                     return;
             }
 
             if (resp != 0) {
-                response.sendRedirect("UserServlet?success=1");
+                response.sendRedirect("?success=1");
             } else {
-                response.sendRedirect("UserServlet?error=1");
+                response.sendRedirect("?error=1");
             }
 
         } catch (Exception e) {
             System.out.println("Error en metodo post edit: " + e.getMessage());
-            response.sendRedirect("UserServlet?error=1");
+            response.sendRedirect("?error=1");
         }
     }
 
@@ -81,7 +84,6 @@ public class UserServlet extends HttpServlet {
             System.out.println("Error al desconectar" + e.getMessage());
 
         }
-
     }
 
 }

@@ -27,11 +27,8 @@
                             <!-- Campo oculto para enviar el ID del usuario -->
                             <input type="hidden" name="idUserCC" id="idUserCC" value="">
 
-                            <!-- Mostrar el ID del usuario -->
-                            <div class="mb-3">
-                                <label>ID del Usuario: </label>
-                                <span id="idUserCCView"></span>
-                            </div>
+                           
+                           
                             <input type="hidden" name="action" value="delete">
                         </form>
                     </div>

@@ -13,25 +13,18 @@
         <title>ADD USER</title>
     </head>
     <body>
-        <div class="alert alert-primary">
-            <h1>Hello World!</h1>
-        </div>
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="launchButton">
-           Agregar Usuario
+            Agregar Usuario
         </button>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-
-                    <div class="modal-header">
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
                     <div class="modal-body">
                         <form action="UserServlet" method="post">
                             <div class="form">
-                                 <input type="hidden" name="action" value="create">
+                                <input type="hidden" name="action" value="create">
                                 <h1>Registro</h1>
                                 <div class="grupo">
                                     <input type="text" name="name"required><span class="barra"></span>
@@ -50,6 +43,15 @@
                                     <input type="email" name="email"><span class="barra"></span>
                                     <label for="email">Email</label>
                                 </div>
+                                <div class="grupo">
+                                    <select name="role" class="form-control" required>
+                                        <option value="" disabled selected>Selecciona un rol</option>
+                                        <option value="administrador">Administrador</option>
+                                        <option value="empleado">Empleado</option>
+                                       
+                                    </select>
+                                </div>
+
                                 <button class="btn-form" type="submit">Registrar usuario</button>
 
                             </div>
